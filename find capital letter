@@ -1,0 +1,29 @@
+MAIN    SEGMENT
+        ASSUME    CS:MAIN   DS:MAIN
+      
+      	MOV CX,0
+      	MOV DI,-1
+
+L1:	    INC DI
+	      MOV DL, STRING[DI]
+	      CMP DI,17
+	      JAE FIN
+
+	      CMP DL, 'A'
+	      JB L1
+	      CMP DL, 'Z'
+	      JA L1
+
+	      INC CX
+	      JMP L1
+
+FIN:	  ADD CX, 48
+	      MOV DX, CX
+	      MOV AH, 2
+	      INT 21H
+
+	      MOV AH, 4CH
+	      INT 21H
+
+MAIN    ENDS
+        END
